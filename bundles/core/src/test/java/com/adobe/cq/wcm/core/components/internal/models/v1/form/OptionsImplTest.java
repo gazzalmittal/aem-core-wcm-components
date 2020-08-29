@@ -80,7 +80,8 @@ public class OptionsImplTest {
         assertEquals(null, options.getValue());
         assertEquals(null, options.getTitle());
         assertEquals(null, options.getHelpMessage());
-
+        assertEquals("", options.getRequiredMessage());
+        assertEquals(false, options.isRequired());
         List<OptionItem> optionItems = options.getItems();
         assertNotNull(optionItems);
         assertTrue(optionItems.size() == 0);
@@ -100,7 +101,8 @@ public class OptionsImplTest {
         assertEquals("local-name", options.getName());
         assertEquals("local-title", options.getTitle());
         assertEquals("local-helpMessage", options.getHelpMessage());
-
+        assertEquals("Required", options.getRequiredMessage());
+        assertEquals(true, options.isRequired());
         List<OptionItem> optionItems = options.getItems();
         assertNotNull(optionItems);
         assertTrue(optionItems.size() == 2);
@@ -143,7 +145,8 @@ public class OptionsImplTest {
         assertEquals("jcr:title1", options.getTitle());
         assertEquals("helpMessage1", options.getHelpMessage());
         assertEquals(Type.CHECKBOX, options.getType());
-
+        assertEquals("Required", options.getRequiredMessage());
+        assertEquals(true, options.isRequired());
         assertNotNull(optionItems);
         assertTrue(optionItems.size() == 3);
 
@@ -160,7 +163,7 @@ public class OptionsImplTest {
     @Test
     public void testRadioOptionsType() throws Exception {
         Options options = getOptionsUnderTest(OPTIONS_6);
-        assertEquals(Type.RADIO, options.getType());
+        assertEquals(Type.RADIO, options.getType());        
         Utils.testJSONExport(options, Utils.getTestExporterJSONPath(TEST_BASE, OPTIONS_6));
     }
 
